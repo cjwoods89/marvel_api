@@ -24,6 +24,7 @@
 
   searchButton.click(function(){
 
+    // Resetting the body content
     listContainer.empty();
 
     $.get( 'http://gateway.marvel.com/v1/public/characters?limit=100&nameStartsWith='+ charName.val() + '&' + publicKey, function( data ) {
@@ -60,8 +61,8 @@
 
   });
 
+  // Pull up the Modal
   listBox.on("click",".myButton button",function(){
-
 
     var modalTitle = $('#myModalLabel');
     var modalBody = $('#modalContent');
@@ -69,6 +70,7 @@
 
     $.get( 'http://gateway.marvel.com/v1/public/characters/' + $(this).attr('id') + '/events?' + '&' + publicKey, function( data ) {
 
+      // Resetting the modal
       modalBody.text('');
 
       for (var i = 0; i < data.data.results.length; i++) {
