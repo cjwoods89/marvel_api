@@ -1,10 +1,14 @@
+body {
+  background-color: lightgray !important;
+}
+
 .container-fluid {
   background-image: url("http://images.athleo.net/backgrounds/Red2.jpg");
-  background-position:center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:auto;
   height: 20%;
-  /*opacity: .8;*/
+  width: 100%;
 }
 
 .jumbotron {
@@ -18,10 +22,28 @@
   color: white !important;
 }
 
-.row {
-  margin-top: 5%;
+#searchBar{
+  margin-top: 6%;
 }
 
 .panel {
   margin-top: 5%;
+}
+
+.col-md-8  {
+  border-radius: 10px;
+  padding: 1%;
+  background-color: white !important;
+
+}
+
+.media-object {
+  height: 120px;
+  width: 120px;
+}
+
+#content {
+  display: none;
+  margin-top: 2%;
+
 }
