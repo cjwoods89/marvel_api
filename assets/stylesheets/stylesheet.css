@@ -34,7 +34,6 @@ body {
   border-radius: 10px;
   padding: 1%;
   background-color: white !important;
-
 }
 
 .media-object {
@@ -45,5 +44,4 @@ body {
 #content {
   display: none;
   margin-top: 2%;
-
 }
