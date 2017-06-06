@@ -1,13 +1,27 @@
-.jumbotron {
-  text-align: right;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  background: white;
+.container-fluid {
+  background-image: url("http://images.athleo.net/backgrounds/Red2.jpg");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20%;
+  /*opacity: .8;*/
 }
 
-.jumbotron a {
-  position: relative;
-  margin-top: 2%;
-  margin-bottom: -2%;
+.jumbotron {
+  /*border: 4px solid purple;*/
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4%;
+  padding-bottom: 3%;
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.row {
+  margin-top: 5%;
+}
+
+.panel {
+  margin-top: 5%;
 }
