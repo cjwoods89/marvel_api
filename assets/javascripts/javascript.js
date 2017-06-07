@@ -27,35 +27,33 @@
     // Resetting the body content
     listContainer.empty();
 
-    $.get( 'http://gateway.marvel.com/v1/public/characters?limit=100&nameStartsWith='+ charName.val() + '&' + publicKey, function( data ) {
+    var queryResult = $.get( 'http://gateway.marvel.com/v1/public/characters?limit=100&nameStartsWith='+ charName.val() + '&' + publicKey, function( data ) {
 
-      for (var i = 0; i < data.data.results.length; i++) {
+      queryResult.done(function(data){
 
-        if (data.data.results[i].description == "") {
-          content = "No description available.....   "
-        } else {
-          content = data.data.results[i].description;
-        }
-        var charArray = data.data.results[i].name.split(' ');
+        for (var i = 0; i < data.data.results.length; i++) {
 
-        listContainer.append(
-          mediaPrefix + charArray.join('+') + mediaPrefix1 + data.data.results[i].thumbnail.path + '.' +
-          data.data.results[i].thumbnail.extension +
-          mediaPrefix2 +
-          data.data.results[i].name +
-          mediaSuffix + content + modalButton + data.data.results[i].id + modalButton2 + mediaSuffix2
-        );
+          if (data.data.results[i].description == "" || data.data.results[i].description == " ") {
+            content = "No description available.....   "
+          } else {
+            content = data.data.results[i].description;
+          }
 
-        // *********************************
-        // Used to alternate the offset of the items returned
-        // However, the order of the div tag has to change as well
-        // So..... I removed it!
-        // $(".media-list .media:nth-child(even)").css("text-align", "right");
-        // *********************************
+          var charArray = data.data.results[i].name.split(' ');
 
-      }
+            listContainer.append(
+              mediaPrefix + charArray.join('+') + mediaPrefix1 + data.data.results[i].thumbnail.path + '.' +
+              data.data.results[i].thumbnail.extension +
+              mediaPrefix2 +
+              data.data.results[i].name +
+              mediaSuffix + content + modalButton + data.data.results[i].id + modalButton2 + mediaSuffix2
+            ); // listContainer.append
 
-    });
+          }; // for loop
+
+        });
+
+      });
 
     listBox.css("display","block");
 
@@ -68,20 +66,29 @@
     var modalBody = $('#modalContent');
     modalTitle.html("Events involving this character:");
 
-    $.get( 'http://gateway.marvel.com/v1/public/characters/' + $(this).attr('id') + '/events?' + '&' + publicKey, function( data ) {
+    var eventsQuery = $.get( 'http://gateway.marvel.com/v1/public/characters/' + $(this).attr('id') + '/events?' + '&' + publicKey, function( data ) {
 
       // Resetting the modal
       modalBody.text('');
 
-      for (var i = 0; i < data.data.results.length; i++) {
+      eventsQuery.done(function(data){
 
-        modalBody.append( '<p> <strong>' + data.data.results[i].title + ' </strong> : ' + data.data.results[i].description + '</p> </br>')
+          for (var i = 0; i < data.data.results.length; i++) {
 
-        // console.log(data.data.results[i].title + ':' + data.data.results[i].description);
+            modalBody.append( '<p> <strong>' + data.data.results[i].title + ' </strong> : ' + data.data.results[i].description + '</p> </br>')
 
-      };
+            // console.log(data.data.results[i].title + ':' + data.data.results[i].description);
 
-    });
+          }; // for loop
+
+      }); // done method
+
+      eventsQuery.fail(function(){
+
+        modalBody.append( '<p> <strong> The event title has failed to load</strong> : ' +  ' The event description has failed to load!</p> </br>')
+
+      }); // fail method
+    }); // get request
 
   });
 
