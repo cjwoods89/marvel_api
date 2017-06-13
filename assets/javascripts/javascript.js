@@ -75,7 +75,7 @@
 
           for (var i = 0; i < data.data.results.length; i++) {
 
-            modalBody.append( '<p> <strong>' + data.data.results[i].title + ' </strong> : ' + data.data.results[i].description + '</p> </br>')
+            modalBody.append( '<p> <strong>' + data.data.results[i].title + ' </strong> : ' + data.data.results[i].description + '</p><i><u>' + data.data.results[i].characters.available + ' characters in total for the ' + data.data.results[i].title + ' series.</u></i><br/><br/>')
 
             // console.log(data.data.results[i].title + ':' + data.data.results[i].description);
 
